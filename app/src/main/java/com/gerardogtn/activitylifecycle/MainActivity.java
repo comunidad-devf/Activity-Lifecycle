@@ -25,18 +25,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setUpButton();
     }
 
-    private void setUpButton() {
-        mBoton = (Button) findViewById(R.id.btn_hola);
-        mBoton.setOnClickListener(this);
-        mBoton.setText(mTextoBoton);
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();
         Log.wtf(TAG, "Ejecutando onStart");
     }
+
 
     @Override
     protected void onResume() {
@@ -56,22 +50,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.wtf(TAG, "Ejecutando onStop");
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.wtf(TAG, "Ejectuando onDestroy");
     }
 
-    @Override
-    public void onClick(View view) {
-        mTextoBoton = "Adios!";
-        mBoton.setText("Adios!");
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(KEY_TEXTO_BOTON, mTextoBoton);
+        Log.d(TAG, "Ejecutando onSaveInstanceState");
+    }
+
+    @Override
+    public void onClick(View view) {
+        mTextoBoton = "Adios!";
+        mBoton.setText(mTextoBoton);
+    }
+
+    private void setUpButton() {
+        mBoton = (Button) findViewById(R.id.btn_hola);
+        mBoton.setOnClickListener(this);
+        mBoton.setText(mTextoBoton);
     }
 }
